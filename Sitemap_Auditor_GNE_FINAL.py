@@ -10,6 +10,22 @@ import xmltodict
 from cachecontrol import CacheControl
 import time
 
+# st.title('Sitemap Auditor')
+# st.subheader('Audit the Sitemaps for Genetech.')
+
+# file = st.file_uploader("Select your file.")
+
+# if file is not None:
+#     st.write("Your File is: ", file.name)
+#     df=pd.read_excel(file)
+#     df['Google_URL'] = 'https://www.google.com/search?q=' + df['Keyword'].str.replace(' ', '%20')
+#     st.write(df)
+# else:
+#     st.warning('Please upload a file to get started.')
+#     st.stop()
+    
+# st.write('Press continue to begin...')   
+# run_it = st.button("Continue")
 
 # improve performance if needed
 sess = requests.session()
