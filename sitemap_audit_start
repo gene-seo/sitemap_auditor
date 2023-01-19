@@ -2,6 +2,8 @@ import subprocess
 import sys
 import streamlit as st
 
+st.title('GNE Sitemap Auditor')
+st.subheader('Check the sitemaps for Genetech brand websites.')
 
 def start_crawl():
     subprocess.run([f"{sys.executable}", "sitemap_auditor_run.py"])
