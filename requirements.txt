@@ -5,6 +5,6 @@ xlwt
 xmltodict
 cachecontrol
 openpyxl
-import glob
+glob
 io
 pyxlsb
