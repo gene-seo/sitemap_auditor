@@ -31,16 +31,13 @@ import streamlit as st
 
 st.title('GNE Sitemap Auditor')
 st.subheader('Check the sitemaps for Genetech brand websites.')
-
-def crawl_sitemaps():
-    sess = requests.session()
-    cached_sess = CacheControl(sess)
-    response = cached_sess.get('http://google.com')
-    header = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+sess = requests.session()
+cached_sess = CacheControl(sess)
+response = cached_sess.get('http://google.com')
+header = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
             'pragma': 'akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-x-robots'
              }
-    return sess, header, cached_sess, response
-    sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
+sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.gazyva-hcp.com/sitemap.xml",
                         "https://www.polivy.com/sitemap.xml",
                         "https://www.lucentis.com/sitemap.xml",
@@ -135,6 +132,8 @@ def crawl_sitemaps():
                         "https://www.emicizumabinfo.com/patient/sitemap.xml",
                         "https://www.homevisionmonitor.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
+
+def crawl_sitemaps():
     st.write('Sitemap list built.')
     data = []
     connection_errors = []
