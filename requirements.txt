@@ -6,3 +6,4 @@ xmltodict
 cachecontrol
 openpyxl
 pyxlsb
+xlsxwriter
