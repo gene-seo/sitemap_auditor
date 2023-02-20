@@ -136,7 +136,7 @@ sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
 
 def crawl_sitemaps():
-        for url in sitemap_crawl_list:
+    for url in sitemap_crawl_list:
         time.sleep(1)
         print('URL: ' + str(url))
         f_data = {}
