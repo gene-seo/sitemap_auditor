@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import numpy as np
@@ -192,11 +190,11 @@ def crawl_sitemaps():
     st.download_button(label='📥 Download Current Result',
                                        data=xlsx ,
                                        file_name=path)
-if download_button:
+    if download_button:
     # Run your function and get some data
     st.stop()
     st.write("Your sitemap audit has completed!")
-    
+
     
 def run_crawl():
     crawl_button = st.button("Start Crawl Now") # Give button a variable name
