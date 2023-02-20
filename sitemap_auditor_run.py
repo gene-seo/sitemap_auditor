@@ -192,8 +192,8 @@ def crawl_sitemaps():
                                        file_name=path)
     if download_button:
     # Run your function and get some data
-    st.stop()
-    st.write("Your sitemap audit has completed!")
+        st.stop()
+        st.write("Your sitemap audit has completed!")
 
     
 def run_crawl():
