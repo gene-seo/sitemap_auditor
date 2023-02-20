@@ -30,11 +30,33 @@ import streamlit as st
 # improve performance if needed
 
 
-st.write("Building sitemap list...")
-sess = requests.session()
-cached_sess = CacheControl(sess)
-response = cached_sess.get('http://google.com')
-sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
+
+
+st.title('GNE Sitemap Auditor')
+st.subheader('Check the sitemaps for Genetech brand websites.')
+
+
+def run_crawl():
+    crawl_button = st.button("Start Crawl Now") # Give button a variable name
+    if crawl_button: # Make button a condition.
+        start_crawl()
+        st.text("Crawl is starting. Your file will be downloaded shortly!")
+        
+run_crawl()
+
+def crawl_sitemaps():
+    st.write("Building sitemap list...")
+    sess = requests.session()
+    return sess
+    cached_sess = CacheControl(sess)
+    return cached_sess
+    response = cached_sess.get('http://google.com')
+    return response
+    header = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+            'pragma': 'akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-x-robots'
+             }
+    return header
+    sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.gazyva-hcp.com/sitemap.xml",
                         "https://www.polivy.com/sitemap.xml",
                         "https://www.lucentis.com/sitemap.xml",
@@ -129,21 +151,10 @@ sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.emicizumabinfo.com/patient/sitemap.xml",
                         "https://www.homevisionmonitor.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
-@st.cache_data
-def header():
-    header = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-            'pragma': 'akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-x-robots'
-             }
-    return header
+    data = []
+    connection_errors = []
 
-
-## request the url in the list
-data = []
-connection_errors = []
-
-@st.cache_data
-def sitemap_crawl():
-    st.write("Starting sitemap crawls...")
+    st.write("Starting sitemap crawl...")
     for url in sitemap_crawl_list:
         time.sleep(1)
         st.write('Crawling URL: ' + str(url))
@@ -187,14 +198,12 @@ def sitemap_crawl():
         except:
             print("URL:" + str(url) + ' had a connection error.')
             connection_errors.append(url)
-            continue
-      
+            continue    
 
     all_data = pd.DataFrame.from_dict(data)
     all_data.to_excel('sitemap-audit_1.xlsx')
 
-header()
-sitemap_crawl()
+crawl_sitemaps()
 
 
 
