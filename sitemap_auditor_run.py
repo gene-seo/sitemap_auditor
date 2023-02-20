@@ -30,13 +30,11 @@ import streamlit as st
 # improve performance if needed
 
 
-@st.cache_data
-def make_list():
-    st.write("Building sitemap list...")
-    sess = requests.session()
-    cached_sess = CacheControl(sess)
-    response = cached_sess.get('http://google.com')
-    sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
+st.write("Building sitemap list...")
+sess = requests.session()
+cached_sess = CacheControl(sess)
+response = cached_sess.get('http://google.com')
+sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.gazyva-hcp.com/sitemap.xml",
                         "https://www.polivy.com/sitemap.xml",
                         "https://www.lucentis.com/sitemap.xml",
@@ -131,8 +129,6 @@ def make_list():
                         "https://www.emicizumabinfo.com/patient/sitemap.xml",
                         "https://www.homevisionmonitor.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
-    return sess, cached_sess, response, sitemap_crawl_list
-
 @st.cache_data
 def header():
     header = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
@@ -198,7 +194,6 @@ def sitemap_crawl():
     all_data.to_excel('sitemap-audit_1.xlsx')
 
 header()
-make_list()
 sitemap_crawl()
 
 
