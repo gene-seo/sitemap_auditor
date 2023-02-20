@@ -29,12 +29,8 @@ import streamlit as st
 
 # improve performance if needed
 
-
-
-
 st.title('GNE Sitemap Auditor')
 st.subheader('Check the sitemaps for Genetech brand websites.')
-
 
 def crawl_sitemaps():
     sess = requests.session()
@@ -139,9 +135,9 @@ def crawl_sitemaps():
                         "https://www.emicizumabinfo.com/patient/sitemap.xml",
                         "https://www.homevisionmonitor.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
+    st.write('Sitemap list built.')
     data = []
     connection_errors = []
-
     st.write("Starting sitemap crawl...")
     for url in sitemap_crawl_list:
         time.sleep(1)
