@@ -136,10 +136,9 @@ sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
 
 def crawl_sitemaps():
-    st.write("Starting sitemap crawl...")
-    for url in sitemap_crawl_list:
+        for url in sitemap_crawl_list:
         time.sleep(1)
-        st.write('Crawling URL: ' + str(url))
+        print('URL: ' + str(url))
         f_data = {}
         try:    
             req = requests.get(url, headers=header)
@@ -180,10 +179,10 @@ def crawl_sitemaps():
         except:
             print("URL:" + str(url) + ' had a connection error.')
             connection_errors.append(url)
-            continue    
-
-    all_data = pd.DataFrame.from_dict(data)
-    all_data.to_excel('sitemap-audit_1.xlsx')
+            continue
+      
+all_data = pd.DataFrame.from_dict(data)
+all_data.to_excel('sitemap-audit_1.xlsx')
 
 def run_crawl():
     crawl_button = st.button("Start Crawl Now") # Give button a variable name
