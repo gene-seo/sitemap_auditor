@@ -13,6 +13,6 @@ def run_crawl():
     crawl_button = st.button("Start Crawl Now") # Give button a variable name
     if crawl_button: # Make button a condition.
         start_crawl()
-        st.text("Crawl is starting. Your file will be downloaded shortly")
+        st.text("Crawl is starting. Your file will be downloaded shortly!")
         
 run_crawl()       
