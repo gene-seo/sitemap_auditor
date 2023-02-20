@@ -27,12 +27,14 @@ import time
 # run_it = st.button("Continue")
 
 # improve performance if needed
-sess = requests.session()
-cached_sess = CacheControl(sess)
 
-response = cached_sess.get('http://google.com')
 
-sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
+@st.cache_data
+def make_list():
+    sess = requests.session()
+    cached_sess = CacheControl(sess)
+    response = cached_sess.get('http://google.com')
+    sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.gazyva-hcp.com/sitemap.xml",
                         "https://www.polivy.com/sitemap.xml",
                         "https://www.lucentis.com/sitemap.xml",
@@ -127,7 +129,7 @@ sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.emicizumabinfo.com/patient/sitemap.xml",
                         "https://www.homevisionmonitor.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
-
+    return sess, cached_sess, response, sitemap_crawl_list
 
 @st.cache_data
 def header():
