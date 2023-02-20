@@ -32,8 +32,7 @@ cached_sess = CacheControl(sess)
 
 response = cached_sess.get('http://google.com')
 
-sitemap_urls = pd.read_excel('C:/Users/Spencer Baselice/OneDrive - Relevate Health/Documents/SEO/SEO Tools/GNE Tools/Sitemaps/sitemap-urls.xlsx
-                             ')
+sitemap_urls = pd.read_excel('C:/Users/Spencer Baselice/OneDrive - Relevate Health/Documents/SEO/SEO Tools/GNE Tools/Sitemaps/sitemap-urls.xlsx')
 
 sitemap_crawl_list = sitemap_urls.iloc[:, 0].to_list()
 
