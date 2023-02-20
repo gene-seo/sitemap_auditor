@@ -4,7 +4,6 @@ numpy==1.21.1
 pandas
 requests==2.28.1
 xlwt
-gzip
 xmltodict
 cachecontrol
 time
