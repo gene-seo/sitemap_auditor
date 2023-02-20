@@ -31,6 +31,7 @@ import time
 
 @st.cache_data
 def make_list():
+    st.write("Building sitemap list...")
     sess = requests.session()
     cached_sess = CacheControl(sess)
     response = cached_sess.get('http://google.com')
@@ -145,6 +146,7 @@ connection_errors = []
 
 @st.cache_data
 def sitemap_crawl():
+    st.write("Starting sitemap crawls...")
     for url in sitemap_crawl_list:
         time.sleep(1)
         st.write('Crawling URL: ' + str(url))
@@ -194,6 +196,8 @@ def sitemap_crawl():
     all_data = pd.DataFrame.from_dict(data)
     all_data.to_excel('sitemap-audit_1.xlsx')
 
+header()
+make_list()
 sitemap_crawl()
 
 
