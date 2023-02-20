@@ -199,8 +199,6 @@ def run_crawl():
         
 run_crawl()    
     
-    
-crawl_sitemaps()
 
 
 
