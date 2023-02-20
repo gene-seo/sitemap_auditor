@@ -174,13 +174,37 @@ def crawl_sitemaps():
 
     all_data = pd.DataFrame.from_dict(data)
     complete_time = time.strftime("%Y%m%d-%H%M%S")
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine = 'xlsxwriter')
     all_data.to_excel('sitemap_audit_' + str(complete_time) + '.xlsx')
+    writer.save()
+    writer.close()
+    processed_data = output.getvalue()
+    return processed_data
+    file_saved = glob.glob(path)
+    st.write('Save path: ' + path)
+# get the current path and tell user where file will be downloaded
+    current_path = os.getcwd()
+    current_time = time.strftime("%m%d%y_%H%M%S")
+    path = str(current_path) + '\serp_scraper_results_' + str(current_time) + '.xlsx'     
+    path = str(current_path) + '\serp_scraper_results_' + str(current_time) + '.xlsx'  
+    xlsx = download(df)
+    st.download_button(label='📥 Download Current Result',
+                                       data=xlsx ,
+                                       file_name=path)
+if download_button:
+    # Run your function and get some data
+    st.stop()
+    st.write("Your sitemap audit has completed!")
     
-
+    
 def run_crawl():
     crawl_button = st.button("Start Crawl Now") # Give button a variable name
     if crawl_button: # Make button a condition.
         crawl_sitemaps()
         st.text("Crawl is starting. Your file will be downloaded shortly!")
         
-run_crawl()    
+run_crawl()
+
+
+    
