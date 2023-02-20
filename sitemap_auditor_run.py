@@ -36,14 +36,6 @@ st.title('GNE Sitemap Auditor')
 st.subheader('Check the sitemaps for Genetech brand websites.')
 
 
-def run_crawl():
-    crawl_button = st.button("Start Crawl Now") # Give button a variable name
-    if crawl_button: # Make button a condition.
-        start_crawl()
-        st.text("Crawl is starting. Your file will be downloaded shortly!")
-        
-run_crawl()
-
 def crawl_sitemaps():
     st.write("Building sitemap list...")
     sess = requests.session()
@@ -203,6 +195,15 @@ def crawl_sitemaps():
     all_data = pd.DataFrame.from_dict(data)
     all_data.to_excel('sitemap-audit_1.xlsx')
 
+def run_crawl():
+    crawl_button = st.button("Start Crawl Now") # Give button a variable name
+    if crawl_button: # Make button a condition.
+        crawl_sitemaps()
+        st.text("Crawl is starting. Your file will be downloaded shortly!")
+        
+run_crawl()    
+    
+    
 crawl_sitemaps()
 
 
