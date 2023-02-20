@@ -49,7 +49,7 @@ data = []
 connection_errors = []
 
 @st.cache_data
-def stiemap_crawl()
+def sitemap_crawl():
     for url in sitemap_crawl_list:
         time.sleep(1)
         print('URL: ' + str(url))
