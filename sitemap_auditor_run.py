@@ -142,32 +142,22 @@ def crawl_sitemaps():
         f_data = {}
         try:    
             req = requests.get(url, headers=header)
+            req_time = time.strftime("%Y%m%d-%H%M%S")
             print(req.status_code)
             print(req.url)
-            print(req.history)
-            #location= req.headers['location']
-            #print(location)
+            f_data['Request_Time'] = req_time
             f_data['Sitemap'] = req.url
             f_data['Status_Code'] = req.status_code
-            #f_data['Redirect_chain'] = req.history
             f_data['Encoding'] = req.encoding
-            #f_data['Last_Modified'] = req.headers['Last-Modified']
-            #f_data['Redirect_URL'] = req.headers['Location']
             if 'X-Robots-Tag' in req.headers.keys():
                 f_data['X_Robots_Tag']=req.headers['X-Robots-Tag']
             else:
                 f_data['X_Robots_Tag']=None  
-            #f_data['Redirects'] = redirect_chain
-            # read thge xml in soup for each URL iteration
-            # find localhost
             xml = req.text
-            soup = BeautifulSoup(xml, 'xml')
-            loc_tags = soup.find_all('loc')
-            for tag in loc_tags:
-                if 'https://localhost:' in tag.text:
-                    f_data['localhost_found'] = 'Yes'
-                else:
-                    f_data['localhost_found'] = 'No'
+            if 'https://localhost:' in xml:
+                f_data['localhost_found'] = 'Yes'
+            else:
+                f_data['localhost_found'] = 'No'
                     # find CDATA
             if '<![CDATA' in xml:
                 f_data['CDATA_found_in_loc'] = 'Yes'
@@ -181,8 +171,10 @@ def crawl_sitemaps():
             connection_errors.append(url)
             continue
 
+
     all_data = pd.DataFrame.from_dict(data)
-    all_data.to_excel('sitemap-audit_1.xlsx')
+    complete_time = time.strftime("%Y%m%d-%H%M%S")
+    all_data.to_excel('sitemap_audit_' + str(complete_time) + '.xlsx')
     
 
 def run_crawl():
