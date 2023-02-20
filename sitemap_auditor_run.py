@@ -180,7 +180,6 @@ def crawl_sitemaps():
     writer = pd.ExcelWriter(output, engine = 'xlsxwriter')
     all_data.to_excel('sitemap_audit_' + str(complete_time) + '.xlsx')
     writer.save()
-    writer.close()
     processed_data = output.getvalue()
     return processed_data
     file_saved = glob.glob(path)
@@ -188,12 +187,41 @@ def crawl_sitemaps():
 # get the current path and tell user where file will be downloaded
     current_path = os.getcwd()
     current_time = time.strftime("%m%d%y_%H%M%S")
-    path = str(current_path) + '\serp_scraper_results_' + str(current_time) + '.xlsx'     
-    path = str(current_path) + '\serp_scraper_results_' + str(current_time) + '.xlsx'  
-    xlsx = download(df)
+    path = str(current_path) + 'sitemap_audit_' + str(current_time) + '.xlsx'     
+    xlsx = download(all_data)
     st.download_button(label='📥 Download Current Result',
                                        data=xlsx ,
                                        file_name=path)
+    
+    
+    
+# @st.cache
+# def download(all_data):
+#     output = BytesIO()
+#     writer = pd.ExcelWriter(output, engine = 'xlsxwriter')
+#     all_data.to_excel(writer, sheet_name = 'audit_results')
+#     #related_pivot.to_excel(writer, sheet_name = 'top_related_searches')
+#     writer.save()
+#     writer.close()
+#     processed_data = output.getvalue()
+#     return processed_data
+#     file_saved = glob.glob(path)
+#     st.write('Save path: ' + path)
+
+# current_path = os.getcwd()
+# current_time = time.strftime("%m%d%y_%H%M%S")
+# path = str(current_path) + '\sitemap_auditor' + str(current_time) + '.xlsx'     
+# xlsx = download(all_data)
+
+# st.download_button(label='📥 Download Current Result',
+#                                    data=xlsx ,
+#                                    file_name=path) 
+    
+    
+    
+    
+    
+    
     if download_button:
     # Run your function and get some data
         st.stop()
