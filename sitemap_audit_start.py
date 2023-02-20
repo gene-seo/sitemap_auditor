@@ -15,4 +15,4 @@ def run_crawl():
         start_crawl()
         st.text("Crawl is starting. Your file will be downloaded shortly")
         
- run_crawl()       
+run_crawl()       
