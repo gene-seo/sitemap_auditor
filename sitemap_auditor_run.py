@@ -180,9 +180,10 @@ def crawl_sitemaps():
             print("URL:" + str(url) + ' had a connection error.')
             connection_errors.append(url)
             continue
-      
-all_data = pd.DataFrame.from_dict(data)
-all_data.to_excel('sitemap-audit_1.xlsx')
+
+    all_data = pd.DataFrame.from_dict(data)
+    all_data.to_excel('sitemap-audit_1.xlsx')
+    
 
 def run_crawl():
     crawl_button = st.button("Start Crawl Now") # Give button a variable name
