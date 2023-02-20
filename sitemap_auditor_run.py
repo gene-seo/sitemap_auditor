@@ -35,8 +35,10 @@ sess = requests.session()
 cached_sess = CacheControl(sess)
 response = cached_sess.get('http://google.com')
 header = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-            'pragma': 'akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-x-robots'
-             }
+            'pragma': 'akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-x-robots'}
+data = []
+connection_errors = []
+
 sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.gazyva-hcp.com/sitemap.xml",
                         "https://www.polivy.com/sitemap.xml",
@@ -134,9 +136,6 @@ sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
 
 def crawl_sitemaps():
-    st.write('Sitemap list built.')
-    data = []
-    connection_errors = []
     st.write("Starting sitemap crawl...")
     for url in sitemap_crawl_list:
         time.sleep(1)
@@ -193,8 +192,3 @@ def run_crawl():
         st.text("Crawl is starting. Your file will be downloaded shortly!")
         
 run_crawl()    
-    
-
-
-
-
