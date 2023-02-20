@@ -5,5 +5,4 @@ xlwt
 xmltodict
 cachecontrol
 openpyxl
-io
 pyxlsb
