@@ -198,8 +198,8 @@ path = str(current_path) + '\sitemap_auditor' + str(current_time) + '.xlsx'
 xlsx = download(all_data)
 
 st.download_button(label='📥 Download Current Result',
-#                                    data=xlsx ,
-#                                    file_name=path) 
+                                    data=xlsx ,
+                                    file_name=path) 
     
     
     
