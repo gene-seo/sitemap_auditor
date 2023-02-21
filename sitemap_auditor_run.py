@@ -192,9 +192,9 @@ def download(all_data):
     file_saved = glob.glob(path)
     st.write('Save path: ' + path)
 
-current_path = os.getcwd()
+#current_path = os.getcwd()
 current_time = time.strftime("%m%d%y_%H%M%S")
-path = str(current_path) + '\sitemap_auditor' + str(current_time) + '.xlsx'     
+path = str(current_time) + '.xlsx'     
 xlsx = download(all_data)
 
 st.download_button(label='📥 Download Current Result',
