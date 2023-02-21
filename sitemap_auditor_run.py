@@ -137,7 +137,6 @@ sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.homevisionmonitor.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
 
-@st.cache_data
 def crawl_sitemaps():
     for url in sitemap_crawl_list:
         time.sleep(1)
