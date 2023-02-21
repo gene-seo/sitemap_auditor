@@ -137,6 +137,7 @@ sitemap_crawl_list = ["https://www.gazyva.com/sitemap.xml",
                         "https://www.homevisionmonitor.com/sitemap.xml",
                         "https://www.mytactic.com/sitemap.xml"]
 
+@st.cache_data
 def crawl_sitemaps():
     for url in sitemap_crawl_list:
         time.sleep(1)
@@ -180,16 +181,16 @@ def crawl_sitemaps():
     
     
     current_time = time.strftime("%m%d%y_%H%M%S")
-    path = str(current_time) + '.xlsx'     
+    path = 'sitemap_audit' + str(current_time) + '.xlsx'     
     xlsx = download(all_data)
 
     st.download_button(label='📥 Download Current Result',
                                     data=xlsx ,
                                     file_name=path) 
     file_saved = glob.glob(path)
-    st.write('Save path: ' + path) 
+    st.write('Download completed file: ' + path) 
     
-@st.cache
+@st.cache_data
 def download(all_data):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine = 'xlsxwriter')
