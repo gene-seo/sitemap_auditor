@@ -179,6 +179,15 @@ def crawl_sitemaps():
    
     
     
+    current_time = time.strftime("%m%d%y_%H%M%S")
+    path = str(current_time) + '.xlsx'     
+    xlsx = download(all_data)
+
+    st.download_button(label='📥 Download Current Result',
+                                    data=xlsx ,
+                                    file_name=path) 
+    file_saved = glob.glob(path)
+    st.write('Save path: ' + path) 
     
 @st.cache
 def download(all_data):
@@ -189,23 +198,7 @@ def download(all_data):
     writer.save()
     processed_data = output.getvalue()
     return processed_data
-    file_saved = glob.glob(path)
-    st.write('Save path: ' + path)
-
-#current_path = os.getcwd()
-current_time = time.strftime("%m%d%y_%H%M%S")
-path = str(current_time) + '.xlsx'     
-xlsx = download(all_data)
-
-st.download_button(label='📥 Download Current Result',
-                                    data=xlsx ,
-                                    file_name=path) 
-    
-    
-    
-    
-    
-    
+   
 #     if download_button:
 #     # Run your function and get some data
 #         st.stop()
